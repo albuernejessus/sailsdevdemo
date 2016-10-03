@@ -1,0 +1,9 @@
+<h1> Editing Entry </h1>
+<form action="/entry/update/<%= entry.id %>" method="POST">
+
+	<div>Name: <input value="<%= entry.name %>" name="name" type="text"/></div>
+	<input type="submit"/>
+</form>
+
+<a href="/entry/edit/<%= entry.id %>">Edit</a> |
+<a href="/entry">Back</a>
