@@ -1,0 +1,32 @@
+<h1>Listing Competitions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<!--
+	<% for(user in model) { %>
+	<tr>
+	  <td><%= model[user].name %></td>
+	  <td><%= model[user].email %></td>
+    <td><a href="/user/show/<%= model[user].id %>">Show</a></td>
+    <td><a href="/user/edit/<%= model[user].id %>">Edit</a></td>
+	<% } %>
+	</tr>
+-->
+
+  <% _.each(model, function (competition) { %>
+  <tr>
+    <td><%= competition.name %></td>
+    <td><a href="/competition/show/<%= competition.id %>">Show</a></td>
+    <td><a href="/competition/edit/<%= competition.id %>">Edit</a></td>
+     <td><a href="/competition/destroy/<%= competition.id %>">Delete</a></td>
+  <% }) %>
+  </tr>
+</table>
+<br />
+
+<a href="/competition/new">New Competition</a>

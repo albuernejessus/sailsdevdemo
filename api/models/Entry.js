@@ -10,7 +10,7 @@ module.exports = {
   attributes: {
 
     name : { type: 'string' },
-
+    entrycompetition: {model: 'competition'},
     items : { collection: 'item',
 	      via: 'itementry' }
   }

@@ -7,90 +7,104 @@
 
 module.exports = {
   index: function (req, res)
-	{
-		Item.find().exec(function (err, items)
-		{
-			if (err) return res.send(err, 500);
+  {
+    Item.find({}, function (err, items)
+    {
+      if (err) return res.send(err, 500);
 
-			res.view({model: items});
-		});
-	},
+      res.view({model: items});
+    });
+  },
 
-	create: function (req, res)
-	{
-		var params = _.extend(req.query || {}, req.params || {}, req.body || {});
+  new: function(req, res)
+  {
+    res.view('item/new');
+  },
 
-		Item.create(params, function itemCreated(err, createdItem)
-		{
-			if (err) return res.send(err, 500);
+  create: function (req, res)
+  {
+    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 
-			res.redirect('/item/show/' + createdItem.id);
-		});
-	},
+    Item.create(params, function (err, createdItem)
+    {
+      if (err) return res.send(err, 500);
 
-	show: function (req, res)
-	{
-		var id = req.param('id');
-		if (!id) return res.send("No ID specified.", 500);
-		//console.log(id);
-		item.findOne({id:id}).exec(function (err, item)
-		{
+      res.redirect('item/show/' + createdItem.id);
+    });
+  },
 
-			if(err) return res.sender(err, 500);
-			if(!item) return res.send("item "+id+" not found.", 404);
-			//console.log(item.name);
-			res.view({item: item});
-		});
-	},
+  show: function (req, res)
+  {
+    var id = req.param('id');
+    if (!id) return res.send("No ID specified.", 500);
+    //console.log(id);
+    Item.findOne({id:id}, function (err, item)
+    {
 
-	edit: function (req, res)
-	{
-		var id = req.param('id');
+      if(err) return res.sender(err, 500);
+      if(!item) return res.send("Item "+id+" not found.", 404);
+      //console.log(entry.name);
+      res.view({item: item});
+    });
+  },
 
-		if(!id) return res.send("No ID specified.", 500);
+  edit: function (req, res)
+  {
+    var id = req.param('id');
 
-		item.findOne({id: id}).exec(function (err, item)
-		{
-				if(err) return res.send(err, 500);
-				if(!item) return res.send("item " + id + " not found.", 404);
+    if(!id) return res.send("No ID specified.", 500);
 
-				res.view({item: item});
-		});
-	},
+    Item.findOne({id: id}, function (err, item)
+    {
+        if(err) return res.send(err, 500);
+        if(!item) return res.send("Item " + id + " not found.", 404);
 
-	update: function (req, res)
+        res.view({item: item});
+    });
+  },
+
+  update: function (req, res)
 	{
 		var params = _.merge({}, req.params.all(), req.body);
 		var id = params.id;
 
 		if(!id) return res.send("No ID specified.", 500);
-		//console.log(params.id);
-		//console.log(params.name);
-		item.update({id:id}, params, function(err, updateditem)
+		Item.update({id:id}, params, function(err, updatedItem)
 		{
 				if(err) res.redirect('item/edit');
-				if(!updateditem) res.redirect('item/edit')
-				//console.log(updateditem.name);
-				res.redirect('item/show/'+id);
+				if(!updatedItem) res.redirect('item/edit');
+				res.redirect('item/show/'+ updatedItem[0].id);
 		});
 	},
 
-	destroy: function (req, res)
-	{
-		var id = req.param('id');
-		if (!id) return res.send("No ID specified.", 500);
+  attach: function (req, res)
+  {
+      var fileattachment = req.file('attachment');
+      console.log(fileattachment);
+      fileattachment.upload(function (err, files)
+      {
+        if(err) return res.serverError(err);
+        console.log(files);
+        res.json({ status: 200, file: files });
+      });
+  },
 
-		item.findOne({id: id}, function founditem(err, item)
-		{
-			if(err) return res.send(err, 500);
-			if(!item) return res.send("No item with that ID exists.", 404);
+  destroy: function (req, res)
+  {
+    var id = req.param('id');
+    if (!id) return res.send("No ID specified.", 500);
 
-			item.destroy({id:id}, function itemDestroyed(err)
-			{
-					if(err) return res.send(err, 500);
-					return res.redirect('/item');
-			});
-		});
-	}
+    Item.findOne({id: id}, function (err, item)
+    {
+      if(err) return res.send(err, 500);
+      if(!item) return res.send("No item with that ID exists.", 404);
+
+      Item.destroy({id:id}, function (err)
+      {
+          if(err) return res.send(err, 500);
+          return res.redirect('/item');
+      });
+    });
+  }
 
 };

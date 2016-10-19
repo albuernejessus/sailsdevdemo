@@ -1,0 +1,9 @@
+<h1> Editing Competition </h1>
+<form action="/competition/update/<%= competition.id %>" method="POST">
+
+	<div>Name: <input value="<%= competition.name %>" name="name" type="text"/></div>
+	<input type="submit"/>
+</form>
+
+
+<a href="/competition">Back</a>

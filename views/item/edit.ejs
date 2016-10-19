@@ -1,0 +1,10 @@
+<h1> Editing Item </h1>
+<form action="/item/update/<%= item.id %>" method="POST">
+
+	<div>Name: <input value="<%= item.name %>" name="name" type="text"/></div>
+	<div><a href="/item/attach/<%= item.id %>">Attach Item</a></div>
+	<input type="submit"/>
+</form>
+
+
+<a href="/item">Back</a>

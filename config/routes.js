@@ -45,6 +45,22 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'get /entry/new': {view: 'entry/new'}
-  //'get /entry/show/:id' : 'EntryController.show'
+  'get /login': {
+       view: 'user/login'
+  },
+
+  'post /login': 'AuthController.login',
+
+  '/logout': 'AuthController.logout',
+
+  'get /signup': {
+    view: 'user/signup'
+  },
+  'get /entry' : 'EntryController.index',
+  'get /item' : 'ItemController.index',
+  'get /competition' : 'CompetitionController.index',
+  'get /entry/show/:id' : 'EntryController.show',
+  'get /item/show/:id' : 'ItemController.show',
+  'get /competition/show/:id' : 'CompetitionController.show',
+  '/upload-file': {view: 'uploadfile'}  // view 'uploadfile' in views directory will loaded automatically
 };
