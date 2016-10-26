@@ -1,0 +1,39 @@
+<!Doctype html>
+<html ng-app>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function FruitsController($scope){
+        $scope.fruits=['apple','mango','banana','strawberry','pineapple','pina colada','raspberry','cherry','peach','pear','apricot'];
+        $scope.toggleGuess=function(){
+            if($scope.query=='') $('p').hide();
+            else $('p').show();
+        }
+    }
+    function ItemsController($scope){
+      $scope.items= ItemController.index();
+      $scope.search=function(){
+        if($scope.query=='') $('p2').hide();
+        else $('p').show();
+      }
+    }
+</script>
+<style type="text/css">
+    p{background-color: #ff0; width:10%; padding:5px; margin:1px; display:none;}
+</style>
+</head>
+<body>
+<div ng-controller="FruitsController">
+    Start typing the Fruit name to get possible guesses :<br />
+    <input type="text" ng-model="query" ng-change="toggleGuess();">
+    <p ng-repeat="fruit in fruits | filter:query">{{fruit}}</p>
+    <br />
+</div>
+<div ng-controller="ItemsController">
+    Start typing the name of an item to get possible items :<br />
+    <input type="text" ng-model="query2" ng-change="search();">
+    <p ng-repeat="item in items | filter:query2">{{item}}</p>
+</div>
+</body>
+</html>
