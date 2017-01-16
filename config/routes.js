@@ -56,11 +56,18 @@ module.exports.routes = {
   'get /signup': {
     view: 'user/signup'
   },
+
   'get /entry' : 'EntryController.index',
+  'get /entry/foo' : 'Entryontroller.foo',
   'get /item' : 'ItemController.index',
   'get /competition' : 'CompetitionController.index',
   'get /entry/show/:id' : 'EntryController.show',
   'get /item/show/:id' : 'ItemController.show',
   'get /competition/show/:id' : 'CompetitionController.show',
+  'get /bucketlist' : 'ETranscoderController.index',
+  'get /etpipes' : 'ETranscoderController.getPipelines',
+  'get /etjobspipe1' : 'ETranscoderController.getJobs',
+  'get /ettranscode' : 'ETranscoderController.transcode',
+  'get /testvideo' : {view: 'testvideo'},
   '/upload-file': {view: 'uploadfile'}  // view 'uploadfile' in views directory will loaded automatically
 };

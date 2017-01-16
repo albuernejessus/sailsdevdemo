@@ -21,6 +21,8 @@
 
 module.exports.connections = {
 
+
+  amazonS3: {adapter: 'sails-s3', bucketName: 'testsrcbucket1'},
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
@@ -53,7 +55,7 @@ module.exports.connections = {
 	host: 'localhost',
 	user: 'dev1',
 	password: 'dev1localhost',
-	database: 'testdb'
+	database: 'sailsdevbetadb'
      }
   /***************************************************************************
   *                                                                          *

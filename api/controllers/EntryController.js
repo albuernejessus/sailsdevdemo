@@ -93,6 +93,11 @@ module.exports = {
 					return res.redirect('/entry');
 			});
 		});
+	},
+
+	foo: function(req, res)
+	{
+		
 	}
 
 };
