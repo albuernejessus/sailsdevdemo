@@ -69,5 +69,6 @@ module.exports.routes = {
   'get /etjobspipe1' : 'ETranscoderController.getJobs',
   'get /ettranscode' : 'ETranscoderController.transcode',
   'get /testvideo' : {view: 'testvideo'},
+  'get /feed' : {view: 'feed'},
   '/upload-file': {view: 'uploadfile'}  // view 'uploadfile' in views directory will loaded automatically
 };
