@@ -1,6 +1,10 @@
 <h1> Item </h1>
-<div>Name: <%= item.name %> </div>
+<div>Name: <%= item.name %>
+    Pieces </br>
+    <iframe id= "entryItems" src="/piece/index/<%= item.id %>" width=98% height=500 frameborder=0> </iframe>
+</div>
+</div>
 
 
 <a href="/item/edit/<%= item.id %>">Edit</a> |
-<a href="/item">Back</a>
+<a href="/item/index/<%= item.itementry %>">Back</a>

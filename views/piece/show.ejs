@@ -1,0 +1,40 @@
+<script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+
+<section ng-controller="PieceCtrl">
+<h1> Piece </h1>
+
+<div>Name: <%= piece.name %> </br>
+     Type: <%= piece.filetype %> </br>
+     Path: <%= piece.filepath %> </br>
+    <% if (piece.filetype == "video") { %>
+        test video </br>
+        <video id=piecevideo controls preload=auto width=640 height=264
+         data-setup="{}">
+        <source src="/<%= piece.filepath %>" />
+      </video>
+    <% } %>
+    <% if (piece.filetype == "pdf") { %>
+      test pdf </br>
+      <embed src="/<%= piece.filepath %>" width="98%" height=500 >
+    <% } %>
+    <% if (piece.filetype == "image") { %>
+      test image </br>
+      <image id=pieceimage src="/<%= piece.filepath %>"> </image>
+    <% } %>
+    <% if (piece.filetype == "audio") { %>
+      <script src="/audiojs/audiojs/audio.min.js"></script>
+      <script>
+            audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+            });
+      </script>
+      test audio </br>
+      <audio id=pieceaudio src="/<%= piece.filepath %>" preload="auto" />
+    <% } %>
+
+</div>
+
+
+<a href="/piece/edit/<%= piece.id %>">Edit</a>
+<a href="/piece/index/<%= piece.pieceitem %>">Back</a>
+</section>

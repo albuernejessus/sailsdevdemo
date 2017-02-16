@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "angular": "^1.5.8",
+    "audiojs": "^0.1.0",
     "aws-sdk": "^2.7.19",
     "bcrypt": "^0.8.7",
     "bootstrap": "^3.3.7",
@@ -27,6 +28,7 @@
     "pagination": "^0.4.4",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pdfjs": "^1.0.0-alpha.5",
     "rc": "1.0.1",
     "sails": "~0.12.4",
     "sails-disk": "~0.10.9",

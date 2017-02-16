@@ -8,12 +8,27 @@
 module.exports = {
   index: function (req, res)
   {
-    Item.find({}, function (err, items)
-    {
-      if (err) return res.send(err, 500);
+    var entry = _.extend(req.query || {}, req.params || {}, req.body || {});
 
-      res.view({model: items});
-    });
+    if (entry.entryid > 0)
+    {
+      Item.find({itementry: entry.entryid}, function (err, items)
+      {
+        if (err) return res.send(err, 500);
+
+        res.view({model: items});
+      })
+    }
+    else
+    {
+      Item.find({}, function (err, items)
+      {
+        if (err) return res.send(err, 500);
+
+        res.view({model: items});
+      });
+    }
+
   },
 
   new: function(req, res)
@@ -76,18 +91,6 @@ module.exports = {
 				res.redirect('item/show/'+ updatedItem[0].id);
 		});
 	},
-
-  attach: function (req, res)
-  {
-      var fileattachment = req.file('attachment');
-      console.log(fileattachment);
-      fileattachment.upload(function (err, files)
-      {
-        if(err) return res.serverError(err);
-        console.log(files);
-        res.json({ status: 200, file: files });
-      });
-  },
 
   destroy: function (req, res)
   {

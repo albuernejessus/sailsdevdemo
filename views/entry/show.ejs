@@ -1,5 +1,8 @@
 <h1> Entry </h1>
-<div>Name: <%= entry.name %> </div>
+<div>Name: <%= entry.name %> </br>
+     Items </br>
+     <iframe id= "entryItems" src="/item/index/<%= entry.id %>" width=98% height=500 frameborder=0> </iframe>
+</div>
 
 
 <a href="/entry/edit/<%= entry.id %>">Edit</a> |
